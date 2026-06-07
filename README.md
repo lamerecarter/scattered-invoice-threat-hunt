@@ -209,7 +209,8 @@ Answer
 law-cyber-range
 
 Evidence:
-(Insert screenshot)
+<img width="766" height="341" alt="image" src="https://github.com/user-attachments/assets/c10a3a56-287d-4e6d-9901-c9b11d6cb66d" />
+
 
 Why This Matters:
 Identifying the tenant establishes the scope of the investigation and confirms which Microsoft 365 environment was compromised.
