@@ -469,64 +469,88 @@ Sophisticated BEC actors frequently configure mailbox rules to stop further rule
 
 ---
 
-🏁 Flag 15: Cloud File Access Activity
+🏁 Flag 15: Delete Rule Name
 
 MITRE:
-T1213 — Data from Information Repositories
+T1564.008 — Hide Artifacts: Email Hiding Rules
 
 Question:
-What activity confirmed the attacker was accessing cloud-hosted data?
+What was the exact name of the second malicious inbox rule created by the attacker?
 
-Answer
-FileAccessed
+Answer:
+..
+
+(Two periods character)
 
 Evidence:
-(Insert screenshot)
+<img width="488" height="217" alt="image" src="https://github.com/user-attachments/assets/afef47fb-3515-45e4-82c3-61cb36c4b3f6" />
+
 
 Why This Matters:
-This event confirms the attacker moved beyond reconnaissance and actively interacted with organizational files stored within Microsoft 365.
+Reviewing all New-InboxRule events during the attack window revealed a second malicious mailbox rule. Similar to the forwarding rule, the attacker assigned the rule a single period (.) as its name.
 
 ---
 
-🏁 Flag 16: Business Email Compromise Target
+🏁 Flag 16: Delete Keywords
 
 MITRE:
-T1586 — Compromise Accounts
+T1564.008 — Hide Artifacts: Email Hiding Rules
 
 Question:
-Which recipient was targeted in the fraudulent invoice campaign?
+What keywords were configured in the second inbox rule to automatically delete messages?
 
-Answer
+Answer:
+suspicious, security, phishing, unusual, compromised, verify
+
+Evidence:
+<img width="864" height="482" alt="image" src="https://github.com/user-attachments/assets/c53de4f1-2629-4e85-8353-a45d1ae5bda6" />
+
+
+Why This Matters:
+This rule reveals a highly deliberate defense evasion strategy.
+
+Rather than targeting financial communications for collection, the attacker targeted emails that might alert the victim to the compromise, including:
+
+Security alerts
+Suspicious login notifications
+Phishing warnings
+Account compromise notices
+Verification requests
+Unusual activity alerts
+
+---
+
+🏁 Flag 17: BEC Target
+
+MITRE:
+T1656 — Impersonation
+
+Question:
+Who received the fraudulent email sent from the compromised account?
+
+Answer:
 j.reynolds@lognpacific.org
 
 Evidence:
-(Insert screenshot)
+<img width="864" height="482" alt="image" src="https://github.com/user-attachments/assets/2b71949f-fb6a-4e0f-a718-5bec076ab9c8" />
+
 
 Why This Matters:
-Identifying the target recipient helps determine the attacker's intended victim and confirms the objective was financial fraud rather than simple account compromise.
+This is the point where the attack transitions from account compromise to attempted financial fraud.
+
+Up to this stage, the attacker had:
+
+Obtained credentials
+Bypassed MFA
+Created persistence
+Hidden security notifications
+Monitored financial communications
+
+The fraudulent email sent to j.reynolds@lognpacific.org represents the first direct attempt to exploit trust within the organization and manipulate a financial process.
 
 ---
 
-🏁 Flag 17: Fraudulent Invoice Subject Line
-
-MITRE:
-T1566.003 — Phishing: Spearphishing via Service
-
-Question:
-What subject line was used in the fraudulent email?
-
-Answer
-RE: Invoice #INV-2026-0892 - Updated Banking Details
-
-Evidence:
-(Insert screenshot)
-
-Why This Matters:
-The attacker hijacked an existing business conversation to increase credibility and improve the likelihood that the recipient would trust modified payment instructions.
-
----
-
-🏁 Flag 18: Email Direction Classification
+🏁 Flag 19: Email Direction Classification
 
 MITRE:
 T1078.004 — Valid Accounts: Cloud Accounts
@@ -538,14 +562,15 @@ Answer
 Intra-org
 
 Evidence:
-(Insert screenshot)
+<img width="870" height="421" alt="image" src="https://github.com/user-attachments/assets/f538d680-7e72-4de6-995e-aa408ce17202" />
+
 
 Why This Matters:
 Because the email originated from a legitimate internal account, traditional inbound email security controls were unlikely to detect the message as malicious.
 
 ---
 
-🏁 Flag 19: Sender IP Address Verification
+🏁 Flag 20: Sender IP Address Verification
 
 MITRE:
 T1078.004 — Valid Accounts: Cloud Accounts
@@ -557,20 +582,72 @@ Answer
 205.147.16.190
 
 Evidence:
-(Insert screenshot)
+<img width="1057" height="52" alt="image" src="https://github.com/user-attachments/assets/ec0d3e1f-6de1-4afc-8565-ebd2a6d196dc" />
+
 
 Why This Matters:
 This directly links the email activity to the same attacker infrastructure observed during the initial compromise and cloud access stages.
 
 ---
 
-🏁 Flag 20: Azure AD Session Correlation
+🏁 Flag 20: BEC Sender IP
 
 MITRE:
-TA0001 — Initial Access
+T1078.004 — Valid Accounts: Cloud Accounts
 
 Question:
-What Azure AD session was associated with the attack?
+What SenderIPv4 address was associated with the fraudulent BEC email?
+
+Answer
+205.147.16.190
+
+Evidence:
+(Insert screenshot)
+
+Why This Matters:
+Correlating the SenderIPv4 value with the attacker's successful sign-in IP confirms that the same authenticated session was used to access the mailbox and send the fraudulent email. This strengthens attribution and demonstrates continuity throughout the attack chain.
+
+🏁 Flag 21: Cloud Application Accessed
+
+MITRE:
+T1530 — Data from Cloud Storage
+
+Question:
+Which cloud application was accessed by the attacker when reviewing cloud-hosted files?
+
+Answer
+Microsoft OneDrive for Business
+
+Evidence:
+(Insert screenshot)
+
+Why This Matters:
+Access to OneDrive indicates the attacker expanded beyond email and began interacting with organizational data stored within Microsoft 365. This increases the likelihood of sensitive document exposure and potential data theft.
+
+🏁 Flag 22: SharePoint Application Accessed
+
+MITRE:
+T1530 — Data from Cloud Storage
+
+Question:
+What additional Microsoft cloud application did the attacker authenticate to?
+
+Answer
+SharePoint Online
+
+Evidence:
+(Insert screenshot)
+
+Why This Matters:
+The attacker did not limit activity to the compromised mailbox. Authentication to SharePoint Online demonstrates access to organizational collaboration platforms, potentially exposing internal documents, shared resources, and business-sensitive information.
+
+🏁 Flag 23: Session Correlation
+
+MITRE:
+T1078.004 — Valid Accounts: Cloud Accounts
+
+Question:
+What Azure AD session identifier linked the attacker's activity across authentication, inbox rules, and email events?
 
 Answer
 00225cfa-a0ff-fb46-a079-5d152fcdf72a
@@ -579,17 +656,15 @@ Evidence:
 (Insert screenshot)
 
 Why This Matters:
-This session identifier became the investigative "golden thread," linking authentication events, mailbox rule creation, SharePoint access, and Business Email Compromise activity.
+This session identifier served as the investigative "golden thread," linking sign-in activity, inbox rule creation, cloud application access, and Business Email Compromise activity into a single attack timeline.
 
----
-
-🏁 Flag 21: Conditional Access Status
+🏁 Flag 24: Conditional Access Status
 
 MITRE:
 TA0005 — Defense Evasion
 
 Question:
-What was the Conditional Access status during the attack?
+What was the ConditionalAccessStatus recorded during the attacker's successful authentication?
 
 Answer
 notApplied
@@ -598,17 +673,15 @@ Evidence:
 (Insert screenshot)
 
 Why This Matters:
-Conditional Access controls were not enforced against the attacker session, allowing the compromise to proceed without additional authentication restrictions.
+Conditional Access policies were not enforced against the attacker's session. As a result, the adversary was able to maintain access without additional authentication challenges or policy-based restrictions.
 
----
-
-🏁 Flag 22: MFA Fatigue Technique
+🏁 Flag 25: MFA Fatigue MITRE Technique
 
 MITRE:
 T1621 — Multi-Factor Authentication Request Generation
 
 Question:
-Which MITRE ATT&CK technique describes the observed MFA abuse?
+Which MITRE ATT&CK technique describes the repeated MFA push notifications used against the victim?
 
 Answer
 T1621
@@ -617,17 +690,15 @@ Evidence:
 (Insert screenshot)
 
 Why This Matters:
-This technique, commonly referred to as MFA fatigue or push bombing, is frequently used by threat actors to bypass multi-factor authentication protections.
+This technique, commonly referred to as MFA fatigue or push bombing, is frequently used by modern threat actors to wear down victims and obtain approval for malicious authentication requests.
 
----
-
-🏁 Flag 23: Email Hiding Rules Technique
+🏁 Flag 26: Email Hiding Rules MITRE Technique
 
 MITRE:
 T1564.008 — Hide Artifacts: Email Hiding Rules
 
 Question:
-Which MITRE ATT&CK technique describes the malicious inbox rule activity?
+Which MITRE ATT&CK technique describes the malicious inbox rule activity used to conceal evidence?
 
 Answer
 T1564.008
@@ -636,17 +707,15 @@ Evidence:
 (Insert screenshot)
 
 Why This Matters:
-The attacker used inbox rules to suppress security notifications and conceal evidence of compromise, allowing the intrusion to remain active for a longer period.
+The attacker used inbox rules to suppress security notifications and hide indicators of compromise, allowing malicious activity to continue without immediately alerting the victim.
 
----
-
-🏁 Flag 24: Initial Credential Source
+🏁 Flag 27: Credential Source
 
 MITRE:
 T1078.004 — Valid Accounts: Cloud Accounts
 
 Question:
-What malware category likely provided the initial credentials?
+What malware category likely provided the initial credentials used in the attack?
 
 Answer
 Infostealer
@@ -655,17 +724,15 @@ Evidence:
 (Insert screenshot)
 
 Why This Matters:
-Infostealers commonly harvest saved passwords, browser data, and authentication tokens which are later sold or shared among threat actors for account compromise operations.
+Infostealers commonly harvest browser credentials, authentication tokens, and saved passwords that are later sold or shared among threat actors. These stolen credentials often serve as the initial access vector for cloud account compromise.
 
----
-
-🏁 Flag 25: Immediate Containment Action
+🏁 Flag 28: Immediate Containment Action
 
 MITRE:
 TA0108 — Containment (Incident Response)
 
 Question:
-What should be the first containment action taken by defenders?
+What should be the first containment action taken by defenders after identifying the compromise?
 
 Answer
 Revoke Sessions
@@ -674,14 +741,12 @@ Evidence:
 (Insert screenshot)
 
 Why This Matters:
-Revoking active sessions immediately invalidates authentication tokens and removes attacker access, preventing further activity while remediation efforts are performed.
+Revoking active sessions immediately invalidates authentication tokens and removes attacker access. This prevents continued activity while password resets, inbox rule removal, and further remediation actions are performed.
 
----
-
-🏁 Flag 26: Threat Actor Attribution
+🏁 Flag 29: Threat Actor Attribution
 
 MITRE:
-TA0043 — Reconnaissance / Threat Intelligence Attribution
+TA0043 — Threat Intelligence & Attribution
 
 Question:
 Which threat actor group's tradecraft most closely aligns with the observed attack?
@@ -693,64 +758,7 @@ Evidence:
 (Insert screenshot)
 
 Why This Matters:
-The attack exhibited multiple behaviors commonly associated with Scattered Spider, including the use of infostealer-sourced credentials, MFA fatigue attacks, cloud identity compromise, mailbox persistence, and Business Email Compromise (BEC) activity.
-
----
-
-🏁 Flag 27: Attack Pattern Correlation
-
-MITRE:
-T1078.004 — Valid Accounts: Cloud Accounts
-
-Question:
-What attack methodology best describes the intrusion?
-
-Answer
-Business Email Compromise (BEC)
-
-Evidence:
-(Insert screenshot)
-
-Why This Matters:
-The attacker leveraged a legitimate Microsoft 365 account to access business communications, monitor financial conversations, and conduct invoice fraud using trusted internal communications.
-
----
-
-🏁 Flag 28: Cloud Identity Compromise Confirmed
-
-MITRE:
-T1078.004 — Valid Accounts: Cloud Accounts
-
-Question:
-What type of compromise occurred during this incident?
-
-Answer
-Cloud Account Compromise
-
-Evidence:
-(Insert screenshot)
-
-Why This Matters:
-Rather than exploiting a vulnerability or deploying malware, the attacker abused valid credentials and trusted authentication workflows to gain access to Microsoft 365 services.
-
----
-
-🏁 Flag 29: Investigation Conclusion
-
-MITRE:
-Multiple Techniques Observed
-
-Question:
-What was the final assessment of the intrusion?
-
-Answer
-Scattered Spider Business Email Compromise
-
-Evidence:
-(Insert screenshot)
-
-Why This Matters:
-The investigation confirmed a complete attack chain consisting of infostealer-derived credentials, MFA fatigue, malicious inbox rule creation, cloud data access, and attempted financial fraud. The combination of observed TTPs aligns closely with publicly reported Scattered Spider operations targeting Microsoft 365 environments.
+The attack exhibited multiple characteristics commonly associated with Scattered Spider, including infostealer-derived credentials, MFA fatigue attacks, cloud identity compromise, malicious inbox rule persistence, and Business Email Compromise (BEC) activity targeting financial processes.
 
 ---
 
