@@ -183,6 +183,10 @@ The attacker executed a cloud-based Business Email Compromise (BEC) campaign pri
 | 24   | Threat Intelligence       | Credential Source         | `Infostealer`                                          |
 | 25   | Containment               | Immediate Response        | `Revoke Sessions`                                      |
 | 26   | Threat Attribution        | Threat Group              | `Scattered Spider`                                     |
+| 26   | MITRE ATT&CK              | Email Hiding Rules        | `T1564.008`                                            |
+| 27   | Threat Intelligence       | Credential Source         | `Infostealer`                                          |
+| 28   | Containment               | Immediate Response        | `Revoke Sessions`                                      |
+| 29   | Threat Attribution        | Threat Group              | `Scattered Spider`                                     |
 
 ### Key Investigation Findings
 
