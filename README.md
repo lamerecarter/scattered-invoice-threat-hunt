@@ -575,26 +575,6 @@ Because the email originated from a legitimate internal account, traditional inb
 
 ---
 
-🏁 Flag 20: Sender IP Address Verification
-
-MITRE:
-T1078.004 — Valid Accounts: Cloud Accounts
-
-Question:
-What IP address sent the fraudulent email?
-
-Answer
-205.147.16.190
-
-Evidence:
-<img width="1057" height="52" alt="image" src="https://github.com/user-attachments/assets/ec0d3e1f-6de1-4afc-8565-ebd2a6d196dc" />
-
-
-Why This Matters:
-This directly links the email activity to the same attacker infrastructure observed during the initial compromise and cloud access stages.
-
----
-
 🏁 Flag 20: BEC Sender IP
 
 MITRE:
