@@ -783,27 +783,24 @@ The intrusion was primarily an identity-focused cloud attack rather than a malwa
 
 ---
 
-💠 Diamond Model of Intrusion Analysis
-+-----------------------------------+       +-----------------------------------+
-|                                   |<----->|                                   |
-|             Adversary             |       |          Infrastructure           |
-|         Scattered Spider          |       | Attacker IP: 205.147.16.190       |
-|   (Financially Motivated Actor)   |       | Microsoft 365 Cloud Services      |
-|   Identity-Focused Operations     |       | Azure AD Authentication           |
-|                                   |       | Outlook Web Access                |
-+-----------------------------------+       +-----------------------------------+
-                  ^                                       |
-                  |                                       v
-+-----------------------------------+       +-----------------------------------+
-|              Victim               |<----->|             Capability            |
-|   Microsoft 365 Tenant            |       | Valid Cloud Account Access        |
-|   law-cyber-range                 |       | MFA Fatigue (T1621)              |
-|                                   |       | Inbox Rule Persistence            |
-|   User: m.smith@lognpacific.org   |       | Email Forwarding Rules            |
-|                                   |       | Email Hiding Rules (T1564.008)   |
-|   Target: j.reynolds@             |       | OneDrive & SharePoint Access      |
-|   lognpacific.org                 |       | Business Email Compromise (BEC)   |
-+-----------------------------------+       +-----------------------------------+
+## 💠 Diamond Model of Intrusion Analysis
+
+```text
++-----------------------------+       +-----------------------------+
+|                             |<----->|                             |
+|          Adversary          |       |       Infrastructure        |
+|       Scattered Spider      |       |    Attacker IP: 205.147...  |
+|                             |       |                             |
++-----------------------------+       +-----------------------------+
+                ^                                  |
+                |                                  v
++-----------------------------+       +-----------------------------+
+|           Victim            |<----->|         Capability          |
+| Microsoft 365 Tenant        |       | MFA Fatigue (T1621)         |
+| m.smith@lognpacific.org     |       | Inbox Rule Persistence      |
+|                             |       | OneDrive & SharePoint       |
++-----------------------------+       +-----------------------------+
+```
 
 ---
 
