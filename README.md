@@ -539,7 +539,6 @@ j.reynolds@lognpacific.org
 Evidence:
 <img width="864" height="482" alt="image" src="https://github.com/user-attachments/assets/2b71949f-fb6a-4e0f-a718-5bec076ab9c8" />
 
-
 Why This Matters:
 This is the point where the attack transitions from account compromise to attempted financial fraud.
 
@@ -569,7 +568,6 @@ Intra-org
 Evidence:
 <img width="870" height="421" alt="image" src="https://github.com/user-attachments/assets/f538d680-7e72-4de6-995e-aa408ce17202" />
 
-
 Why This Matters:
 Because the email originated from a legitimate internal account, traditional inbound email security controls were unlikely to detect the message as malicious.
 
@@ -589,9 +587,10 @@ Answer
 Evidence:
 <img width="1093" height="169" alt="image" src="https://github.com/user-attachments/assets/52fc478c-eb6f-41dd-b04b-c0980a9b9bfd" />
 
-
 Why This Matters:
 Correlating the SenderIPv4 value with the attacker's successful sign-in IP confirms that the same authenticated session was used to access the mailbox and send the fraudulent email. This strengthens attribution and demonstrates continuity throughout the attack chain.
+
+---
 
 🏁 Flag 21: Cloud Application Accessed
 
@@ -607,9 +606,10 @@ Microsoft OneDrive for Business
 Evidence:
 <img width="750" height="441" alt="image" src="https://github.com/user-attachments/assets/82529578-e920-40a4-88b7-c7690f2d77c1" />
 
-
 Why This Matters:
 Access to OneDrive indicates the attacker expanded beyond email and began interacting with organizational data stored within Microsoft 365. This increases the likelihood of sensitive document exposure and potential data theft.
+
+---
 
 🏁 Flag 22: SharePoint Application Accessed
 
@@ -625,9 +625,10 @@ SharePoint Online
 Evidence:
 <img width="750" height="174" alt="image" src="https://github.com/user-attachments/assets/7115cfdf-d29f-4d4a-9f54-aac501305bc6" />
 
-
 Why This Matters:
 The attacker did not limit activity to the compromised mailbox. Authentication to SharePoint Online demonstrates access to organizational collaboration platforms, potentially exposing internal documents, shared resources, and business-sensitive information.
+
+---
 
 🏁 Flag 23: Session Correlation
 
@@ -643,9 +644,10 @@ Answer
 Evidence:
 <img width="962" height="174" alt="image" src="https://github.com/user-attachments/assets/7f2ae833-cc56-4d1b-99c9-9b4f9e1c73c2" />
 
-
 Why This Matters:
 This session identifier served as the investigative "golden thread," linking sign-in activity, inbox rule creation, cloud application access, and Business Email Compromise activity into a single attack timeline.
+
+---
 
 🏁 Flag 24: Conditional Access Status
 
@@ -661,9 +663,10 @@ notApplied
 Evidence:
 <img width="377" height="141" alt="image" src="https://github.com/user-attachments/assets/520a210f-6985-4f72-ad6c-73c546b417dc" />
 
-
 Why This Matters:
 Conditional Access policies were not enforced against the attacker's session. As a result, the adversary was able to maintain access without additional authentication challenges or policy-based restrictions.
+
+---
 
 🏁 Flag 25: MFA Fatigue MITRE Technique
 
@@ -679,6 +682,8 @@ T1621
 Why This Matters:
 This technique, commonly referred to as MFA fatigue or push bombing, is frequently used by modern threat actors to wear down victims and obtain approval for malicious authentication requests.
 
+---
+
 🏁 Flag 26: Email Hiding Rules MITRE Technique
 
 MITRE:
@@ -692,6 +697,8 @@ T1564.008
 
 Why This Matters:
 The attacker used inbox rules to suppress security notifications and hide indicators of compromise, allowing malicious activity to continue without immediately alerting the victim.
+
+---
 
 🏁 Flag 27: Credential Source
 
@@ -707,6 +714,8 @@ Infostealer
 Why This Matters:
 Infostealers commonly harvest browser credentials, authentication tokens, and saved passwords that are later sold or shared among threat actors. These stolen credentials often serve as the initial access vector for cloud account compromise.
 
+---
+
 🏁 Flag 28: Immediate Containment Action
 
 MITRE:
@@ -720,6 +729,8 @@ Revoke Sessions
 
 Why This Matters:
 Revoking active sessions immediately invalidates authentication tokens and removes attacker access. This prevents continued activity while password resets, inbox rule removal, and further remediation actions are performed.
+
+---
 
 🏁 Flag 29: Threat Actor Attribution
 
