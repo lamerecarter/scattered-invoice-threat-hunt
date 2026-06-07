@@ -229,45 +229,47 @@ Answer
 m.smith@lognpacific.org
 
 Evidence:
-(Insert screenshot)
+<img width="800" height="761" alt="image" src="https://github.com/user-attachments/assets/b46166cb-2e41-4ec5-a097-f633042217a9" />
+
 
 Why This Matters:
 This account served as the primary victim throughout the investigation and was used by the attacker to access Microsoft 365 resources.
 
 ---
 
-🏁 Flag 3: Suspicious Authentication Source
+🏁 Flag 3: Attacker Location
 
 MITRE:
 T1078.004 — Valid Accounts: Cloud Accounts
 
 Question:
-What IP address was used by the attacker?
+What location was associated with the attacker's successful sign-in?
 
-Answer
-205.147.16.190
+Answer:
+Netherlands (NL)
 
 Evidence:
-(Insert screenshot)
+<img width="784" height="283" alt="image" src="https://github.com/user-attachments/assets/8ec4bc82-3d60-48ea-bb6c-7ed0d96860b3" />
+
 
 Why This Matters:
-The attacker authenticated from the Netherlands using infrastructure not previously associated with the legitimate user.
+Geographic anomalies are often one of the first indicators of compromised cloud accounts. Identifying a successful sign-in from an unexpected country can help analysts rapidly scope an incident, validate suspicious authentication activity, and initiate containment actions before the attacker establishes persistence.
 
 ---
 
-🏁 Flag 4: MFA Challenge Failure
+🏁 Flag 4: MFA Denial Error Code
 
 MITRE:
 T1621 — Multi-Factor Authentication Request Generation
 
 Question:
-What authentication error code was observed?
+What error code indicates that strong authentication (MFA) was required but not completed?
 
-Answer
+Answer:
 50074
 
 Evidence:
-(Insert screenshot)
+<img width="1014" height="138" alt="image" src="https://github.com/user-attachments/assets/07aae730-70bc-4b77-aaee-84b511dc0f09" />
 
 Why This Matters:
 This error indicates
@@ -280,13 +282,13 @@ MITRE:
 T1621 — Multi-Factor Authentication Request Generation
 
 Question:
-How many MFA authentication failures occurred before successful access?
+How many MFA push requests did Mark deny before he approved one?
 
-Answer
+Answer:
 3
 
 Evidence:
-(Insert screenshot)
+<img width="997" height="264" alt="image" src="https://github.com/user-attachments/assets/103c01f9-6f2e-4a6f-a078-f9a43d0ce9a5" />
 
 Why This Matters:
 Multiple failed MFA attempts are consistent with MFA fatigue attacks, where an attacker repeatedly sends authentication prompts until the victim eventually approves one.
@@ -299,13 +301,13 @@ MITRE:
 T1078.004 — Valid Accounts: Cloud Accounts
 
 Question:
-What Microsoft cloud application was accessed following authentication?
+After successfully bypassing MFA, what Microsoft application did the attacker authenticate to?
 
-Answer
-SharePoint Online
+Answer:
+One Outlook Web
 
 Evidence:
-(Insert screenshot)
+<img width="996" height="490" alt="image" src="https://github.com/user-attachments/assets/cc2fb8b9-1089-49e5-b42e-a092a3388c2b" />
 
 Why This Matters:
 This confirms the attacker moved beyond authentication and began interacting with Microsoft 365 resources using the compromised account.
@@ -315,16 +317,16 @@ This confirms the attacker moved beyond authentication and began interacting wit
 🏁 Flag 7: Attacker Operating System
 
 MITRE:
-T1036 — Masquerading
+T1078.004 — Valid Accounts: Cloud Accounts
 
 Question:
-What operating system was observed in the attacker's user agent?
+What operating system was used by the attacker during the successful authentication?
 
-Answer
+Answer:
 Linux
 
 Evidence:
-(Insert screenshot)
+<img width="996" height="240" alt="image" src="https://github.com/user-attachments/assets/96aa6ac5-3cdf-4e76-970d-ea6df3f72032" />
 
 Why This Matters:
 Identifying the attacker's operating system provides valuable context when profiling adversary infrastructure and investigating additional activity.
@@ -337,13 +339,13 @@ MITRE:
 T1078.004 — Valid Accounts: Cloud Accounts
 
 Question:
-What browser was used by the attacker?
+What browser and version was used by the attacker during the successful authentication?
 
-Answer
+Answer:
 Firefox 147.0
 
 Evidence:
-(Insert screenshot)
+<img width="969" height="231" alt="image" src="https://github.com/user-attachments/assets/4f5ba39f-eb59-4b09-8465-8f87d2801d7d" />
 
 Why This Matters:
 Browser artifacts assist in session correlation and help distinguish attacker activity from legitimate user behavior.
@@ -353,7 +355,7 @@ Browser artifacts assist in session correlation and help distinguish attacker ac
 🏁 Flag 9: Initial Cloud Activity Type
 
 MITRE:
-TA0001 — Initial Access
+T1087 – Account Discovery
 
 Question:
 What was the first recorded ActionType associated with the attacker's activity?
@@ -362,7 +364,7 @@ Answer
 Application
 
 Evidence:
-(Insert screenshot)
+<img width="1064" height="575" alt="image" src="https://github.com/user-attachments/assets/a60a079e-fd42-4256-9df9-fbc4c3378612" />
 
 Why This Matters:
 This establishes the first observable cloud activity performed after successful authentication and helps begin reconstruction of the attack timeline.
