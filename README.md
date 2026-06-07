@@ -446,7 +446,8 @@ Answer:
 invoice, payment, wire, transfer
 
 Evidence:
-(Insert screenshot)
+<img width="843" height="152" alt="image" src="https://github.com/user-attachments/assets/5c60738c-d73f-413f-947a-7ab58ae019a7" />
+
 
 Why This Matters:
 The attacker expanded beyond email access and began collecting information from cloud-hosted storage resources.
