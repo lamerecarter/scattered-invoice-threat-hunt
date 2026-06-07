@@ -602,7 +602,8 @@ Answer
 205.147.16.190
 
 Evidence:
-(Insert screenshot)
+<img width="1093" height="169" alt="image" src="https://github.com/user-attachments/assets/52fc478c-eb6f-41dd-b04b-c0980a9b9bfd" />
+
 
 Why This Matters:
 Correlating the SenderIPv4 value with the attacker's successful sign-in IP confirms that the same authenticated session was used to access the mailbox and send the fraudulent email. This strengthens attribution and demonstrates continuity throughout the attack chain.
@@ -619,7 +620,8 @@ Answer
 Microsoft OneDrive for Business
 
 Evidence:
-(Insert screenshot)
+<img width="750" height="441" alt="image" src="https://github.com/user-attachments/assets/82529578-e920-40a4-88b7-c7690f2d77c1" />
+
 
 Why This Matters:
 Access to OneDrive indicates the attacker expanded beyond email and began interacting with organizational data stored within Microsoft 365. This increases the likelihood of sensitive document exposure and potential data theft.
@@ -636,7 +638,8 @@ Answer
 SharePoint Online
 
 Evidence:
-(Insert screenshot)
+<img width="750" height="174" alt="image" src="https://github.com/user-attachments/assets/7115cfdf-d29f-4d4a-9f54-aac501305bc6" />
+
 
 Why This Matters:
 The attacker did not limit activity to the compromised mailbox. Authentication to SharePoint Online demonstrates access to organizational collaboration platforms, potentially exposing internal documents, shared resources, and business-sensitive information.
@@ -653,7 +656,8 @@ Answer
 00225cfa-a0ff-fb46-a079-5d152fcdf72a
 
 Evidence:
-(Insert screenshot)
+<img width="962" height="174" alt="image" src="https://github.com/user-attachments/assets/7f2ae833-cc56-4d1b-99c9-9b4f9e1c73c2" />
+
 
 Why This Matters:
 This session identifier served as the investigative "golden thread," linking sign-in activity, inbox rule creation, cloud application access, and Business Email Compromise activity into a single attack timeline.
@@ -670,7 +674,8 @@ Answer
 notApplied
 
 Evidence:
-(Insert screenshot)
+<img width="377" height="141" alt="image" src="https://github.com/user-attachments/assets/520a210f-6985-4f72-ad6c-73c546b417dc" />
+
 
 Why This Matters:
 Conditional Access policies were not enforced against the attacker's session. As a result, the adversary was able to maintain access without additional authentication challenges or policy-based restrictions.
@@ -686,9 +691,6 @@ Which MITRE ATT&CK technique describes the repeated MFA push notifications used 
 Answer
 T1621
 
-Evidence:
-(Insert screenshot)
-
 Why This Matters:
 This technique, commonly referred to as MFA fatigue or push bombing, is frequently used by modern threat actors to wear down victims and obtain approval for malicious authentication requests.
 
@@ -702,9 +704,6 @@ Which MITRE ATT&CK technique describes the malicious inbox rule activity used to
 
 Answer
 T1564.008
-
-Evidence:
-(Insert screenshot)
 
 Why This Matters:
 The attacker used inbox rules to suppress security notifications and hide indicators of compromise, allowing malicious activity to continue without immediately alerting the victim.
@@ -720,9 +719,6 @@ What malware category likely provided the initial credentials used in the attack
 Answer
 Infostealer
 
-Evidence:
-(Insert screenshot)
-
 Why This Matters:
 Infostealers commonly harvest browser credentials, authentication tokens, and saved passwords that are later sold or shared among threat actors. These stolen credentials often serve as the initial access vector for cloud account compromise.
 
@@ -737,9 +733,6 @@ What should be the first containment action taken by defenders after identifying
 Answer
 Revoke Sessions
 
-Evidence:
-(Insert screenshot)
-
 Why This Matters:
 Revoking active sessions immediately invalidates authentication tokens and removes attacker access. This prevents continued activity while password resets, inbox rule removal, and further remediation actions are performed.
 
@@ -753,9 +746,6 @@ Which threat actor group's tradecraft most closely aligns with the observed atta
 
 Answer
 Scattered Spider
-
-Evidence:
-(Insert screenshot)
 
 Why This Matters:
 The attack exhibited multiple characteristics commonly associated with Scattered Spider, including infostealer-derived credentials, MFA fatigue attacks, cloud identity compromise, malicious inbox rule persistence, and Business Email Compromise (BEC) activity targeting financial processes.
