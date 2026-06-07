@@ -383,7 +383,7 @@ Answer
 New-InboxRule
 
 Evidence:
-(Insert screenshot)
+<img width="1064" height="576" alt="image" src="https://github.com/user-attachments/assets/9fe72c57-a391-4de6-a127-0bde5a5fb3e4" />
 
 Why This Matters:
 The creation of mailbox rules is a common Business Email Compromise persistence technique that enables attackers to monitor communications and automate malicious actions.
@@ -399,10 +399,11 @@ Question:
 What keywords were targeted by the attacker's inbox rule?
 
 Answer
-invoice, payment, wire, transfer
+.
 
 Evidence:
-(Insert screenshot)
+<img width="1064" height="305" alt="image" src="https://github.com/user-attachments/assets/b23c3424-f500-4e39-a5da-2c03ebd0cb56" />
+
 
 Why This Matters:
 These keywords reveal the attacker's objective: identifying financial communications that could be leveraged for wire fraud or invoice manipulation.
@@ -412,16 +413,17 @@ These keywords reveal the attacker's objective: identifying financial communicat
 🏁 Flag 12: Inbox Rule Defense Evasion
 
 MITRE:
-T1564.008 — Hide Artifacts: Email Hiding Rules
+T1114.003 — Email Collection: Email Forwarding Rule
 
 Question:
-What setting prevented additional mailbox rules from processing?
+What external email address was configured in the malicious forwarding rule?
 
 Answer
-StopProcessingRules = True
+insights@duck.com
 
 Evidence:
-(Insert screenshot)
+<img width="1064" height="90" alt="image" src="https://github.com/user-attachments/assets/e20971a5-813a-4861-9641-3fd5682a8794" />
+
 
 Why This Matters:
 This configuration ensured the malicious rule executed first and prevented legitimate mailbox rules from interfering with the attacker's objectives.
@@ -431,13 +433,13 @@ This configuration ensured the malicious rule executed first and prevented legit
 🏁 Flag 13: OneDrive Access Identified
 
 MITRE:
-T1213 — Data from Information Repositories
+T1114.003 — Email Collection: Email Forwarding Rule
 
 Question:
-What Microsoft cloud application was used to access files?
+What keywords were configured in the forwarding rule's SubjectOrBodyContainsWords parameter?
 
-Answer
-Microsoft OneDrive for Business
+Answer:
+invoice, payment, wire, transfer
 
 Evidence:
 (Insert screenshot)
@@ -447,22 +449,23 @@ The attacker expanded beyond email access and began collecting information from 
 
 ---
 
-🏁 Flag 14: SharePoint Access Confirmed
+🏁 Flag 14: Rule Processing Flag
 
 MITRE:
-T1213 — Data from Information Repositories
+T1564.008 — Hide Artifacts: Email Hiding Rules
 
 Question:
-What additional Microsoft cloud service was accessed?
+What parameter ensures the malicious inbox rule takes priority and prevents other mailbox rules from processing matching emails?
 
 Answer
-SharePoint Online
+StopProcessingRules
 
 Evidence:
-(Insert screenshot)
+<img width="997" height="313" alt="image" src="https://github.com/user-attachments/assets/e414132c-bd7e-4f1e-942e-882b64769b3b" />
+
 
 Why This Matters:
-Access to SharePoint indicates the attacker was attempting to locate business documents, invoices, contracts, and other organizational data.
+Sophisticated BEC actors frequently configure mailbox rules to stop further rule processing once their malicious rule is triggered.
 
 ---
 
