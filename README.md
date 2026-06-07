@@ -1,35 +1,22 @@
 # 📚 Table of Contents
 
-* [🕵️‍♀️ Threat Hunt Overview](#threat-hunt-overview)
-
-* [🧰 Platforms and Tools](#-platforms-and-tools)
-
-* [🎯 Background, Objective and Scope](#-background-objective-and-scope)
-
-* [🧠 Executive Summary](#-executive-summary)
-
-* [🔍 Summary of Findings (Flags)](#-summary-of-findings)
-
+* [🧰 Platforms and Tools](#platforms-and-tools)
+* [🎯 Background, Objective and Scope](#background-objective-and-scope)
+* [🧠 Executive Summary](#executive-summary)
+* [🔍 Summary of Findings (Flags)](#summary-of-findings-flags)
 * 🧩 Key Findings by Flag (With KQL + MITRE)
-
   * [PHASE 1: INITIAL ACCESS & MFA FATIGUE (FLAGS 1-8)](#-flag-1-initial-compromise)
   * [PHASE 2: CLOUD ACCOUNT ACCESS (FLAGS 9-15)](#-flag-9-successful-authentication)
   * [PHASE 3: EMAIL & DATA ACCESS (FLAGS 16-22)](#-flag-16-outlook-web-access)
   * [PHASE 4: SESSION CORRELATION & INVESTIGATION (FLAGS 23-24)](#-flag-23-session-correlation)
   * [PHASE 5: DEFENSE GAPS & CONTAINMENT (FLAGS 25-28)](#-flag-25-conditional-access-status)
   * [PHASE 6: THREAT ACTOR ATTRIBUTION (FLAG 29)](#-flag-29-threat-actor-attribution)
-
-* [🎯 MITRE ATT&CK Technique Mapping](#-mitre-attck-technique-mapping)
-
+* [🎯 MITRE ATT&CK Technique Mapping](#mitre-attck-technique-mapping)
 * [☁️ Microsoft 365 Attack Chain Reconstruction](#-microsoft-365-attack-chain-reconstruction)
-
-* [💠 Diamond Model of Intrusion Analysis](#-diamond-model-of-intrusion-analysis)
-
-* [🧾 Conclusion](#-conclusion)
-
-* [🎓 Lessons Learned](#-lessons-learned)
-
-* [🛠️ Recommendations for Remediation](#-recommendations-for-remediation)
+* [💠 Diamond Model of Intrusion Analysis](#diamond-model-of-intrusion-analysis)
+* [🧾 Conclusion](#conclusion)
+* [🎓 Lessons Learned](#lessons-learned)
+* [🛠️ Recommendations for Remediation](#recommendations-for-remediation)
 
 ---
 
