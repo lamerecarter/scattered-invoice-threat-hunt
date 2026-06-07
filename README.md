@@ -969,8 +969,6 @@ This threat hunt reinforces several critical defensive lessons:
 
 * Rapid containment actions such as **Revoke Sessions** can significantly reduce attacker dwell time and limit further access to cloud resources.
 
-* Correlating authentication, email, and cloud application telemetry is essential when investigating modern Microsoft 365 intrusions.
-
 Ultimately, Scattered Invoice demonstrates that successful cloud attacks often require no malware, no exploits, and no endpoint compromise. A single stolen identity can provide access to email, files, business communications, and financial processes. Organizations that prioritize identity security, conditional access enforcement, and cloud telemetry monitoring are significantly better positioned to detect and disrupt these attacks before financial loss occurs.
 
 ---
@@ -985,37 +983,9 @@ This intrusion demonstrates that attackers do not always need malware, exploits,
 
 While multi-factor authentication remains a critical security control, the observed MFA fatigue attack highlights that authentication security ultimately depends on user decision-making. Repeated authentication prompts can create opportunities for attackers to exploit trust, confusion, or user frustration to gain access.
 
-### ***Inbox Rules Are an Effective Persistence Mechanism***
-
-The attacker established persistence through malicious inbox rules that automatically monitored financial communications and suppressed security-related messages. Because these rules operate within the mailbox itself, they can remain active for extended periods without generating obvious indicators of compromise.
-
-### ***Business Email Compromise Often Begins With Visibility, Not Fraud***
-
-Before sending fraudulent payment instructions, the attacker first spent time collecting information from Outlook, OneDrive, and SharePoint. Access to financial conversations, invoices, and organizational documents allowed the adversary to understand normal business processes and identify opportunities for fraud.
-
 ### ***Cloud Storage Platforms Contain High-Value Business Data***
 
 The attack extended beyond email into OneDrive for Business and SharePoint Online, demonstrating that cloud storage platforms frequently contain sensitive operational, financial, and organizational information. Monitoring file access activity is just as important as monitoring mailbox activity during cloud investigations.
-
-### ***Conditional Access Gaps Can Enable Successful Intrusions***
-
-The investigation revealed that Conditional Access protections were not applied to the attacker's session. Even when strong authentication controls exist, misconfigured or unenforced access policies can provide adversaries with unrestricted access to cloud resources once credentials are compromised.
-
-### ***Session Correlation Is Critical During Cloud Investigations***
-
-The Azure AD session identifier provided a reliable method for linking authentication events, mailbox activity, SharePoint access, and Business Email Compromise actions. Session-based investigations often provide a clearer picture of attacker behavior than isolated event analysis.
-
-### ***Rapid Session Revocation Can Significantly Reduce Impact***
-
-Once a cloud account has been compromised, immediate containment actions are critical. Revoking active sessions can instantly invalidate authentication tokens, remove attacker access, and prevent additional malicious activity while remediation efforts are underway.
-
-### ***Identity-Centric Attacks Require Identity-Centric Monitoring***
-
-Traditional endpoint-focused detection strategies may not identify attacks that operate entirely within legitimate cloud services. Organizations must monitor authentication events, inbox rule creation, mailbox forwarding activity, cloud application access, and anomalous user behavior to effectively detect modern Microsoft 365 compromises.
-
-### ***Threat Actors Are Increasingly Targeting Business Processes***
-
-The ultimate objective of this intrusion was not system disruption, data destruction, or ransomware deployment. Instead, the attacker targeted financial workflows and trusted business communications. This reinforces the growing trend of financially motivated threat actors focusing on identity systems and business processes as their primary attack surface.
 
 ---
 
